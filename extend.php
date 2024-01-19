@@ -1,8 +1,8 @@
 <?php
 
-namespace ClarkWinkelmann\JWTCookieLogin;
+namespace TEQHungVo\JWTCookieLogin;
 
-use ClarkWinkelmann\JWTCookieLogin\Middleware\AuthenticateWithJWT;
+use TEQHungVo\JWTCookieLogin\Middleware\AuthenticateWithJWT;
 use Flarum\Api\Serializer\ForumSerializer;
 use Flarum\Extend;
 use Flarum\Http\Middleware\AuthenticateWithSession;

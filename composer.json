@@ -28,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "ClarkWinkelmann\\JWTCookieLogin\\": "src/"
+            "TEQHungVo\\JWTCookieLogin\\": "src/"
         }
     },
     "extra": {

@@ -1,6 +1,6 @@
 <?php
 
-namespace ClarkWinkelmann\JWTCookieLogin\Controller;
+namespace TEQHungVo\JWTCookieLogin\Controller;
 
 use Flarum\Api\Controller\UpdateUserController;
 use Flarum\Api\Serializer\CurrentUserSerializer;

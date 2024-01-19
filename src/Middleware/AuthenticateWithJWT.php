@@ -1,6 +1,6 @@
 <?php
 
-namespace ClarkWinkelmann\JWTCookieLogin\Middleware;
+namespace TEQHungVo\JWTCookieLogin\Middleware;
 
 use Dflydev\FigCookies\FigRequestCookies;
 use Firebase\JWT\JWT;

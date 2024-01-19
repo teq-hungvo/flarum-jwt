@@ -1,6 +1,6 @@
 <?php
 
-namespace ClarkWinkelmann\JWTCookieLogin;
+namespace TEQHungVo\JWTCookieLogin;
 
 use Flarum\Api\Serializer\ForumSerializer;
 use Flarum\Settings\SettingsRepositoryInterface;
