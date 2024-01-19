@@ -1,4 +1,4 @@
-clarkwinkelmann-jwt-cookie-login:
+teq-hungvo-jwt:
     admin:
         settings:
             cookieName: Cookie Name
@@ -11,7 +11,7 @@ clarkwinkelmann-jwt-cookie-login:
             publicKey: Public Key
             publicKeyHelp: Leave Empty to use Google Firebase keys
             publicKeyAlgorithm: Public Key Algorithm
-            publicKeyAlgorithmHelp: 'Only required with Public Key. Example: RS256'
+            publicKeyAlgorithmHelp: "Only required with Public Key. Example: RS256"
             expirationLeeway: Expiration Leeway (seconds)
             expirationLeewayHelp: >
                 How many additional seconds past JWT expiration should the session still start.
