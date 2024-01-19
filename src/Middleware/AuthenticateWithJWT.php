@@ -186,12 +186,10 @@ class AuthenticateWithJWT implements MiddlewareInterface
 
     protected function logInDebugMode(string $message)
     {
-        if ($this->config->inDebugMode()) {
-            /**
-             * @var $logger LoggerInterface
-             */
-            $logger = resolve(LoggerInterface::class);
-            $logger->info($message);
-        }
+        /**
+         * @var $logger LoggerInterface
+         */
+        $logger = resolve(LoggerInterface::class);
+        $logger->info($message);
     }
 }
