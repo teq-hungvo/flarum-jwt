@@ -20,8 +20,9 @@ app.initializers.add("jwt-cookie-login", () => {
                     {
                         icon: "fas fa-sign-out-alt",
                         onclick() {
+                            delete_cookie("flarum_session");
                             delete_cookie("eazymock_session", href);
-                            delete_cookie("flarum_session", href);
+                            delete_cookie("CHECK_LOGIN", href);
                             window.location.replace(window.location.origin);
                         },
                     },
@@ -131,6 +132,11 @@ app.initializers.add("jwt-cookie-login", () => {
     });
 });
 
-function delete_cookie(name, domain) {
-    document.cookie = `${name}=; Path=/; Domain=${domain}; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+function delete_cookie(name, domain = null) {
+    if (!domain) {
+        document.cookie = `${name}=; Path=/; Domain=${domain}; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+        return;
+    }
+
+    document.cookie = `${name}=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
 }
