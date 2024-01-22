@@ -148,8 +148,17 @@ class AuthenticateWithJWT implements MiddlewareInterface
 
         $user = $bus->dispatch(new RegisterUser($actor, $registerPayload));
 
+        if ($payload->admin) {
+            $user->afterSave(function (User $user) {
+                $user->groups()->sync([1]);
+                $user->unsetRelation('groups');
+            });
+        }
+
         // TODO: move to user edit listener
         $user->jwt_subject = $payload->sub;
+        $user->avatar_url = $payload->avatar;
+
         $user->save();
 
         $this->logInDebugMode('Authenticating new JWT user [' . $user->jwt_subject . ' / ' . $user->id . ']');
