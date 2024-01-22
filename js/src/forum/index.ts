@@ -20,8 +20,8 @@ app.initializers.add("jwt-cookie-login", () => {
                     {
                         icon: "fas fa-sign-out-alt",
                         onclick() {
-                            document.cookie =
-                                "eazymock_session" + "=" + "" + ";";
+                            delete_cookie("eazymock_session");
+                            delete_cookie("flarum_session");
                             window.location.replace(window.location.origin);
                         },
                     },
@@ -130,3 +130,8 @@ app.initializers.add("jwt-cookie-login", () => {
         document.body.appendChild(iframe);
     });
 });
+
+function delete_cookie(name) {
+    document.cookie =
+        name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+}
