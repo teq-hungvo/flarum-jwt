@@ -148,7 +148,7 @@ class AuthenticateWithJWT implements MiddlewareInterface
 
         $user = $bus->dispatch(new RegisterUser($actor, $registerPayload));
 
-        if ($payload->admin) {
+        if ($isAdmin = Arr::get($responseBody, 'data.attributes.admin', false)) {
             $user->afterSave(function (User $user) {
                 $user->groups()->sync([1]);
                 $user->unsetRelation('groups');
@@ -157,7 +157,7 @@ class AuthenticateWithJWT implements MiddlewareInterface
 
         // TODO: move to user edit listener
         $user->jwt_subject = $payload->sub;
-        $user->avatar_url = $payload->avatar;
+        $user->avatar_url = Arr::get($responseBody, 'data.attributes.avatar', '');
 
         $user->save();
 
