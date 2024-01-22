@@ -117,11 +117,11 @@ class AuthenticateWithJWT implements MiddlewareInterface
 
             $this->logInDebugMode("Response of POST $hookUrl:" . PHP_EOL . $responseBody);
 
-            $resp = Utils::jsonDecode($responseBody, true);
+            $resp = Arr::get(Utils::jsonDecode($responseBody, true), 'data', []);
 
             $registerPayload = array_merge_recursive(
                 $registerPayload,
-                Arr::get($resp, 'data', [])
+                $resp
             );
         }
 
