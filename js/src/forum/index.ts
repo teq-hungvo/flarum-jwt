@@ -1,7 +1,6 @@
 import app from "flarum/forum/app";
 import { extend } from "flarum/common/extend";
 import Button from "flarum/common/components/Button";
-import LinkButton from "flarum/common/components/LinkButton";
 import SessionDropdown from "flarum/forum/components/SessionDropdown";
 import ForumApplication from "flarum/forum/ForumApplication";
 
@@ -21,7 +20,8 @@ app.initializers.add("jwt-cookie-login", () => {
                     {
                         icon: "fas fa-sign-out-alt",
                         onclick() {
-                            alert(document.cookie);
+                            document.cookie =
+                                "eazymock_session" + "=" + "" + ";";
                         },
                     },
                     app.translator.trans("core.forum.header.log_out_button")

@@ -117,9 +117,11 @@ class AuthenticateWithJWT implements MiddlewareInterface
 
             $this->logInDebugMode("Response of POST $hookUrl:" . PHP_EOL . $responseBody);
 
+            $resp = Utils::jsonDecode($responseBody, true);
+
             $registerPayload = array_merge_recursive(
                 $registerPayload,
-                Arr::get(Utils::jsonDecode($responseBody, true), 'data', [])
+                Arr::get($resp, 'data', [])
             );
         }
 
@@ -148,7 +150,7 @@ class AuthenticateWithJWT implements MiddlewareInterface
 
         $user = $bus->dispatch(new RegisterUser($actor, $registerPayload));
 
-        if ($isAdmin = Arr::get($responseBody, 'data.attributes.admin', false)) {
+        if ($isAdmin = Arr::get($resp, 'attributes.admin', false)) {
             $user->afterSave(function (User $user) {
                 $user->groups()->sync([1]);
                 $user->unsetRelation('groups');
@@ -157,7 +159,7 @@ class AuthenticateWithJWT implements MiddlewareInterface
 
         // TODO: move to user edit listener
         $user->jwt_subject = $payload->sub;
-        $user->avatar_url = Arr::get($responseBody, 'data.attributes.avatar', '');
+        $user->avatar_url = Arr::get($resp, 'attributes.avatar', '');
 
         $user->save();
 
