@@ -133,7 +133,7 @@ app.initializers.add("jwt-cookie-login", () => {
 });
 
 function delete_cookie(name, domain = null) {
-    if (!domain) {
+    if (domain) {
         document.cookie = `${name}=; Path=/; Domain=${domain}; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
         return;
     }
