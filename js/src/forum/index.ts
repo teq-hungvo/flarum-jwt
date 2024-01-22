@@ -17,10 +17,12 @@ app.initializers.add("jwt-cookie-login", () => {
         if (href) {
             items.add(
                 "logOutLink",
-                LinkButton.component(
+                Button.component(
                     {
                         icon: "fas fa-sign-out-alt",
-                        href,
+                        onclick() {
+                            alert(document.cookie);
+                        },
                     },
                     app.translator.trans("core.forum.header.log_out_button")
                 )
