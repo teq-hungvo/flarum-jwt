@@ -20,9 +20,9 @@ app.initializers.add("jwt-cookie-login", () => {
                     {
                         icon: "fas fa-sign-out-alt",
                         onclick() {
-                            delete_cookie("eazymock_session");
-                            delete_cookie("flarum_session");
-                            window.location.href = href;
+                            delete_cookie("eazymock_session", href);
+                            delete_cookie("flarum_session", href);
+                            window.location.replace(window.location.origin);
                         },
                     },
                     app.translator.trans("core.forum.header.log_out_button")
@@ -131,7 +131,6 @@ app.initializers.add("jwt-cookie-login", () => {
     });
 });
 
-function delete_cookie(name) {
-    document.cookie =
-        name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+function delete_cookie(name, domain) {
+    document.cookie = `${name}=; Path=/; Domain=${domain}; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
 }
