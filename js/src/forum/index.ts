@@ -13,22 +13,20 @@ app.initializers.add("jwt-cookie-login", () => {
             items.remove("logOut");
         }
 
-        if (href) {
-            items.add(
-                "logOutLink",
-                Button.component(
-                    {
-                        icon: "fas fa-sign-out-alt",
-                        onclick() {
-                            delete_cookie("eazymock_session");
-                            delete_cookie("flarum_session");
-                            window.location.replace(window.location.origin);
-                        },
+        items.add(
+            "logOutLink",
+            Button.component(
+                {
+                    icon: "fas fa-sign-out-alt",
+                    onclick() {
+                        delete_cookie("eazymock_session");
+                        delete_cookie("flarum_session");
+                        window.location.replace(window.location.origin);
                     },
-                    app.translator.trans("core.forum.header.log_out_button")
-                )
-            );
-        }
+                },
+                app.translator.trans("core.forum.header.log_out_button")
+            )
+        );
     });
 
     extend(ForumApplication.prototype, "mount", function () {
