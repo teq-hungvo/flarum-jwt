@@ -1,5 +1,5 @@
 import app from "flarum/admin/app";
-import { extend } from "flarum/admin/extend";
+import { extend } from "flarum/common/extend";
 import Button from "flarum/common/components/Button";
 import SessionDropdown from "flarum/admin/components/SessionDropdown";
 
@@ -146,7 +146,7 @@ app.initializers.add("jwt-cookie-login", () => {
             ),
         });
 
-    extend(SessionDropdown.prototype, "items", function (items) {
+    extend(app, SessionDropdown.prototype, "items", function (items) {
         const href = app.forum.attribute<string | false>("logoutRedirect");
 
         // False is used to explicitly say the logout button should be hidden without any replacement
