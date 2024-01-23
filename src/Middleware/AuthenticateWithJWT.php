@@ -160,6 +160,7 @@ class AuthenticateWithJWT implements MiddlewareInterface
         // TODO: move to user edit listener
         $user->jwt_subject = $payload->sub;
         $user->avatar_url = Arr::get($resp, 'attributes.avatar', '');
+        $user->nickname = Arr::get($resp, 'attributes.username', '');
 
         $user->save();
 
