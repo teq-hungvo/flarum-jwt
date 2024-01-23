@@ -12,8 +12,7 @@
         "flarum/core": "^1.2",
         "firebase/php-jwt": "^6.0",
         "guzzlehttp/guzzle": "^7.0",
-        "ext-json": "*",
-        "flarum/nicknames": "*"
+        "ext-json": "*"
     },
     "authors": [
         {
