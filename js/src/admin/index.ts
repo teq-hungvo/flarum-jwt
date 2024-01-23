@@ -148,6 +148,7 @@ app.initializers.add("jwt-cookie-login", () => {
 
     extend(app, SessionDropdown.prototype, "items", function (items) {
         const href = app.forum.attribute<string | false>("logoutRedirect");
+        console.log(href, items);
 
         // False is used to explicitly say the logout button should be hidden without any replacement
         if (href || href === false) {
