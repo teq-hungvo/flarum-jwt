@@ -26,7 +26,7 @@ app.initializers.add("jwt-cookie-login", () => {
                             window.location.replace(window.location.origin);
                         },
                     },
-                    "Log Out"
+                    app.translator.trans("core.forum.header.log_out_button")
                 )
             );
         }
