@@ -4,6 +4,35 @@ import Button from "flarum/common/components/Button";
 import SessionDropdown from "flarum/admin/components/SessionDropdown";
 
 app.initializers.add("jwt-cookie-login", () => {
+    extend(app, SessionDropdown.prototype, "items", function (items) {
+        const href = app.forum.attribute<string | false>("logoutRedirect");
+        console.log(href, items);
+
+        // False is used to explicitly say the logout button should be hidden without any replacement
+        if (href || href === false) {
+            items.remove("logOut");
+        }
+
+        if (href) {
+            items.add(
+                "logOutLink",
+                Button.component(
+                    {
+                        icon: "fas fa-sign-out-alt",
+                        onclick() {
+                            delete_cookie("flarum_session");
+                            delete_cookie("eazymock_session", href);
+                            delete_cookie("CHECK_LOGIN", href);
+                            set_cookie("eazymock_sign_out", "true", href);
+                            window.location.replace(window.location.origin);
+                        },
+                    },
+                    "Log Out"
+                )
+            );
+        }
+    });
+
     app.extensionData
         .for("teq-hungvo-jwt")
         .registerSetting({
@@ -145,35 +174,6 @@ app.initializers.add("jwt-cookie-login", () => {
                 "teq-hungvo-jwt.admin.settings.logoutRedirectHelp"
             ),
         });
-
-    extend(app, SessionDropdown.prototype, "items", function (items) {
-        const href = app.forum.attribute<string | false>("logoutRedirect");
-        console.log(href, items);
-
-        // False is used to explicitly say the logout button should be hidden without any replacement
-        if (href || href === false) {
-            items.remove("logOut");
-        }
-
-        if (href) {
-            items.add(
-                "logOutLink",
-                Button.component(
-                    {
-                        icon: "fas fa-sign-out-alt",
-                        onclick() {
-                            delete_cookie("flarum_session");
-                            delete_cookie("eazymock_session", href);
-                            delete_cookie("CHECK_LOGIN", href);
-                            set_cookie("eazymock_sign_out", "true", href);
-                            window.location.replace(window.location.origin);
-                        },
-                    },
-                    "Log Out"
-                )
-            );
-        }
-    });
 });
 
 function delete_cookie(name, domain = null) {
