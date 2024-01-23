@@ -164,6 +164,7 @@ app.initializers.add("jwt-cookie-login", () => {
                             delete_cookie("flarum_session");
                             delete_cookie("eazymock_session", href);
                             delete_cookie("CHECK_LOGIN", href);
+                            set_cookie("eazymock_sign_out", "true", href);
                             window.location.replace(window.location.origin);
                         },
                     },
@@ -181,4 +182,13 @@ function delete_cookie(name, domain = null) {
     }
 
     document.cookie = `${name}=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+}
+
+function set_cookie(name, value, domain = null) {
+    if (domain) {
+        document.cookie = `${name}=${value}; Path=/; Domain=${domain};`;
+        return;
+    }
+
+    document.cookie = `${name}=${value}; Path=/;`;
 }
