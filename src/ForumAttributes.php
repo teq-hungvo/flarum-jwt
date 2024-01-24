@@ -29,10 +29,6 @@ class ForumAttributes
             $attributes['autoLoginDelay'] = is_numeric($autoLogin) ? (int)$autoLogin : 2000;
         }
 
-        if (!$serializer->getRequest()->getAttribute('jwtStatelessAuth')) {
-            return $attributes;
-        }
-
         $logoutRedirect = $this->settings->get('jwt-cookie-login.logoutRedirect');
 
         return $attributes + [
