@@ -6,6 +6,7 @@ use TEQHungVo\JWTCookieLogin\Middleware\AuthenticateWithJWT;
 use Flarum\Api\Serializer\ForumSerializer;
 use Flarum\Extend;
 use Flarum\Http\Middleware\AuthenticateWithSession;
+use Flarum\User\Event\Saving;
 
 return [
     (new Extend\Frontend('forum'))
