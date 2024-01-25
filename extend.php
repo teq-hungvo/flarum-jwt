@@ -28,4 +28,7 @@ return [
 
     (new Extend\ApiSerializer(ForumSerializer::class))
         ->attributes(ForumAttributes::class),
+
+    (new Extend\Event())
+    ->listen(Saving::class, SaveAvatar::class),
 ];
